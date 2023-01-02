@@ -8,12 +8,12 @@ Desarrollo de nueva API Backend para el sistema de inventario de Tech-Inn, a mod
 
 - [ ] Implementar los modelos e ir verificando o refactorizando los atributos. _Check this box when models work in a major commit_.
 
-- **Usuario**
+- **User**
 
   - username
-  - password
+  - passwordHash
 
-- **Equipo**
+- **Item**
   - nombre
   - codigo
   - marca

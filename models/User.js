@@ -3,19 +3,20 @@ const { Schema, model } = require("mongoose");
 const usuarioSchema = new Schema(
   {
     username: String,
-    password: String,
+    passwordHash: String,
   },
   {
     timestamps: true,
   }
 );
-// Proceso para eliminar los atributos _id y __v para la response dada por el endpoint
+// Proceso para eliminar los atributos _id, __v y la contraseña para la response dada por el endpoint
 // Ojo que no se afectan los documentos guardados en la db
 usuarioSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id;
     delete returnedObject._id;
     delete returnedObject.__v;
+    delete returnedObject.passwordHash;
   },
 });
 
