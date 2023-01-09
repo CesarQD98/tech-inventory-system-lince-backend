@@ -8,20 +8,24 @@ usersRouter.get("/", async (request, response) => {
 });
 
 usersRouter.post("/", async (request, response) => {
-  const { body } = request;
-  const { username, password } = body;
+  try {
+    const { body } = request;
+    const { username, password } = body;
 
-  const saltRounds = 10;
-  const passwordHash = await bcrypt.hash(password, saltRounds);
+    const saltRounds = 10;
+    const passwordHash = await bcrypt.hash(password, saltRounds);
 
-  const user = new User({
-    username,
-    passwordHash,
-  });
+    const user = new User({
+      username,
+      passwordHash,
+    });
 
-  const savedUser = await user.save();
+    const savedUser = await user.save();
 
-  response.status(201).json(savedUser);
+    response.status(201).json(savedUser);
+  } catch (error) {
+    response.status(400).json(error);
+  }
 });
 
 module.exports = usersRouter;

@@ -18,6 +18,7 @@ app.get("/", (request, response) => {
 });
 
 app.use("/api/users", usersRouter);
+// app.use("/api/items", itemsRouter);
 
 const PORT = process.env.PORT || 3001;
 const server = app.listen(PORT, () => {

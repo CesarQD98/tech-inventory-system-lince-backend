@@ -37,6 +37,28 @@ describe("Creating a new user", () => {
     expect(usernames).toContain(newUser.username);
   });
 
+  test("creation fails with proper status code and message if username is already taken", async () => {
+    const usersAtStart = await getUsers();
+
+    const newUser = {
+      username: "test_usuario",
+      password: "test_password",
+    };
+
+    const result = await api
+      .post("/api/users")
+      .send(newUser)
+      .expect(400)
+      .expect("Content-Type", /application\/json/);
+
+    expect(result.body.errors.username.message).toContain(
+      "`username` to be unique"
+    );
+
+    const usersAtEnd = await getUsers();
+    expect(usersAtEnd).toHaveLength(usersAtStart.length);
+  });
+
   afterAll(() => {
     mongoose.connection.close();
     server.close();

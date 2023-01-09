@@ -1,17 +1,19 @@
+const uniqueValidator = require("mongoose-unique-validator");
 const { Schema, model } = require("mongoose");
 
-const usuarioSchema = new Schema(
+const userSchema = new Schema(
   {
-    username: String,
+    username: {
+      type: String,
+      unique: true,
+    },
     passwordHash: String,
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 // Proceso para eliminar los atributos _id, __v y la contraseña para la response dada por el endpoint
 // Ojo que no se afectan los documentos guardados en la db
-usuarioSchema.set("toJSON", {
+userSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id;
     delete returnedObject._id;
@@ -20,21 +22,8 @@ usuarioSchema.set("toJSON", {
   },
 });
 
-const Usuario = model("Usuario", usuarioSchema);
+userSchema.plugin(uniqueValidator);
 
-// const usuario = new Usuario({
-//   username: "test_user",
-//   password: "111",
-// });
+const User = model("User", userSchema);
 
-// usuario
-//   .save()
-//   .then((result) => {
-//     console.log(result);
-//     mongoose.connection.close();
-//   })
-//   .catch((err) => {
-//     console.error(err);
-//   });
-
-module.exports = Usuario;
+module.exports = User;
