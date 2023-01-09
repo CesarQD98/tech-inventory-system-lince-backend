@@ -6,6 +6,7 @@ const app = express();
 const cors = require("cors");
 
 const usersRouter = require("./routes/user.routes");
+const itemsRouter = require("./routes/items.routes");
 
 app.use(cors()); // TODO: Revisar acerca de CORS
 app.use(express.json());
@@ -18,7 +19,7 @@ app.get("/", (request, response) => {
 });
 
 app.use("/api/users", usersRouter);
-// app.use("/api/items", itemsRouter);
+app.use("/api/items", itemsRouter);
 
 const PORT = process.env.PORT || 3001;
 const server = app.listen(PORT, () => {

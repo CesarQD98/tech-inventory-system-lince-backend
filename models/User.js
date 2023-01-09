@@ -8,6 +8,12 @@ const userSchema = new Schema(
       unique: true,
     },
     passwordHash: String,
+    items: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Item",
+      },
+    ],
   },
   { timestamps: true }
 );
