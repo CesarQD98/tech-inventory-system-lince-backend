@@ -27,7 +27,9 @@ usersRouter.post("/", async (request, response) => {
 
     response.status(201).json(savedUser);
   } catch (error) {
-    response.status(400).json(error);
+    // TODO: Ajustar el mensaje de error del plugin de express-unique-validator
+    response.status(400).json(error.errors.username.message);
+    // response.status(400).json(`Error, expected ${error.errors.username}`);
   }
 });
 

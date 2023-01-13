@@ -1,4 +1,7 @@
 const itemsRouter = require("express").Router();
+
+const userExtractor = require("../middleware/userExtractor");
+
 const Item = require("../models/Item");
 const User = require("../models/User");
 
@@ -9,10 +12,12 @@ itemsRouter.get("/", async (request, response) => {
   response.json(items);
 });
 
-itemsRouter.post("/", async (request, response) => {
-  const { name, codigo, marca, createdBy } = request.body;
+itemsRouter.post("/", userExtractor, async (request, response, next) => {
+  const { name, codigo, marca } = request.body;
 
-  const user = await User.findById(createdBy);
+  const { userId } = request;
+
+  const user = await User.findById(userId);
 
   const newItem = new Item({
     name,
