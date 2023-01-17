@@ -1,0 +1,9 @@
+POST http://localhost:3001/api/items
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzYxZDJhZGJmNTdhOWZlNmIxMzBmNSIsInVzZXJuYW1lIjoibGluY2UiLCJpYXQiOjE2NzM5Nzk5NTAsImV4cCI6MTY3Mzk4MzU1MH0.BgmO_L0WakrFw4INr2ObZYP9mAXgRj8cPCoM8sdzedA
+
+{
+  "name": "item 3",
+  "codigo": "codigo123",
+  "marca": "CocaCola"
+}

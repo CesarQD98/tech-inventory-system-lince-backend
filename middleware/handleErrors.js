@@ -9,6 +9,10 @@ const ERROR_HANDLERS = {
 
   TokenExpirerError: (res) => res.status(401).json({ error: "token expired" }),
 
+  SyntaxError: (res) => {
+    res.status(400).send({ error: "SyntaxError, possibly in request!" });
+  },
+
   defaultError: (res, error) => {
     console.error(error.name);
     res.status(500).end();

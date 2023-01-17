@@ -7,7 +7,7 @@ const cors = require("cors");
 
 const handleErrors = require("./middleware/handleErrors");
 
-const usersRouter = require("./routes/user.routes");
+const usersRouter = require("./routes/users.routes");
 const itemsRouter = require("./routes/items.routes");
 const loginRouter = require("./routes/login.routes");
 

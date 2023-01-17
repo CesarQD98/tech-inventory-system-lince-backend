@@ -8,6 +8,7 @@ const User = require("../models/User");
 itemsRouter.get("/", async (request, response) => {
   const items = await Item.find({}).populate("createdBy", {
     username: 1,
+    _id: 0,
   });
   response.json(items);
 });
@@ -23,7 +24,7 @@ itemsRouter.post("/", userExtractor, async (request, response, next) => {
     name,
     codigo,
     marca,
-    createdBy: user._id,
+    createdBy: userId,
   });
 
   try {
