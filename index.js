@@ -6,6 +6,7 @@ const app = express();
 const cors = require("cors");
 
 const handleErrors = require("./middleware/handleErrors");
+const userExtractor = require("./middleware/userExtractor");
 
 const usersRouter = require("./routes/users.routes");
 const itemsRouter = require("./routes/items.routes");
@@ -22,6 +23,9 @@ app.get("/", (request, response) => {
 });
 
 app.use("/api/login", loginRouter);
+
+// Ensures every request needs a token to proceed
+app.use(userExtractor);
 app.use("/api/users", usersRouter);
 app.use("/api/items", itemsRouter);
 
