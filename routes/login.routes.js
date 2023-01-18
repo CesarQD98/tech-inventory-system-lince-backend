@@ -13,19 +13,17 @@ loginRouter.post("/", async (request, response) => {
     user === null ? false : await bcrypt.compare(password, user.passwordHash);
 
   if (!(user && passwordCorrect)) {
-    console.log("dentro del if");
     response.status(401).json({
       error: "Invalid username or password!",
     });
   } else {
-    console.log("dentro del else");
     const userForToken = {
       id: user._id,
       username: user.username,
     };
 
     const token = jwt.sign(userForToken, process.env.SECRET, {
-      expiresIn: 60 * 60,
+      expiresIn: parseInt(process.env.EXPIRATION),
     });
 
     response.send({

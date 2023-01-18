@@ -5,7 +5,7 @@ const userExtractor = require("../middleware/userExtractor");
 const Item = require("../models/Item");
 const User = require("../models/User");
 
-itemsRouter.get("/", async (request, response) => {
+itemsRouter.get("/", userExtractor, async (request, response) => {
   const items = await Item.find({}).populate("createdBy", {
     username: 1,
     _id: 0,
