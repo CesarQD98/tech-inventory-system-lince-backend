@@ -9,6 +9,14 @@ const itemSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    deliveryTime: String,
+    deliveryLoc: String,
+    proveedor: String,
+    procedencia: {
+      type: String,
+      enum: ["C", "A", "ND", "N", "E", "O"],
+      default: "O",
+    },
   },
   { timestamps: true }
 );
