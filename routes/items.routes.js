@@ -14,7 +14,15 @@ itemsRouter.get("/", userExtractor, async (request, response) => {
 });
 
 itemsRouter.post("/", userExtractor, async (request, response, next) => {
-  const { name, codigo, marca } = request.body;
+  const {
+    name,
+    codigo,
+    marca,
+    deliveryTime,
+    deliveryLoc,
+    proveedor,
+    procedencia,
+  } = request.body;
 
   const { userId } = request;
 
@@ -25,6 +33,10 @@ itemsRouter.post("/", userExtractor, async (request, response, next) => {
     codigo,
     marca,
     createdBy: userId,
+    deliveryTime,
+    deliveryLoc,
+    proveedor,
+    procedencia,
   });
 
   try {
@@ -33,7 +45,7 @@ itemsRouter.post("/", userExtractor, async (request, response, next) => {
     user.items = user.items.concat(savedItem._id);
     await user.save();
 
-    response.json(savedItem);
+    response.status(201).json(savedItem);
   } catch (error) {
     next(error);
   }

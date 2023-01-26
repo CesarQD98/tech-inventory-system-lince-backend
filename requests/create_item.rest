@@ -1,9 +1,13 @@
 POST http://localhost:3001/api/items
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzYxZDJhZGJmNTdhOWZlNmIxMzBmNSIsInVzZXJuYW1lIjoibGluY2UiLCJpYXQiOjE2NzM5ODIxNjEsImV4cCI6MTY3Mzk4MjIyMX0.CBg4i9on_YIKmhNRErwODK2k5oIPFB7_vL_3pmeFM_Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzYxZDJhZGJmNTdhOWZlNmIxMzBmNSIsInVzZXJuYW1lIjoibGluY2UiLCJpYXQiOjE2NzQ2MTkzODIsImV4cCI6MTY3NDg3ODU4Mn0.JjchOdSIr090xeVvEzYOSzsUmMKSZfd9-BPSLHJqwXg
 
 {
   "name": "item 22",
   "codigo": "codigo123",
-  "marca": "CocaCola"
+  "marca": "CocaCola",
+  "deliveryTime": "2 dias",
+  "deliveryLoc": "San Isidro",
+  "proveedor": "Firefly",
+  "procedencia": "N"
 }

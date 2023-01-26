@@ -7,7 +7,7 @@ const ERROR_HANDLERS = {
   JsonWebTokenError: (res) =>
     res.status(401).json({ error: "token missing or invalid" }),
 
-  TokenExpirerError: (res) => res.status(401).json({ error: "token expired" }),
+  TokenExpiredError: (res) => res.status(401).json({ error: "token expired" }),
 
   SyntaxError: (res) => {
     res.status(400).send({ error: "SyntaxError, possibly in request!" });

@@ -23,13 +23,14 @@ app.get("/", (request, response) => {
 });
 
 app.use("/api/login", loginRouter);
-
-// Ensures every request needs a token to proceed
-app.use(userExtractor);
+// Dado que no se quiere que hayan requests externos a la organización
+// se opta por denegar la creación de usuarios. Se tendrá que realizar
+// vía la db.
 app.use("/api/users", usersRouter);
-app.use("/api/items", itemsRouter);
 
-console.log("Antes del handleErrors!");
+// Asegura que cada request sea con token
+app.use(userExtractor);
+app.use("/api/items", itemsRouter);
 
 app.use(handleErrors);
 

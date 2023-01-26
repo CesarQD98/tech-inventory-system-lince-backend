@@ -26,7 +26,6 @@ itemSchema.set("toJSON", {
     returnedObject.id = returnedObject._id;
     delete returnedObject._id;
     delete returnedObject.__v;
-    // delete returnedObject.createdBy.id;
   },
 });
 
